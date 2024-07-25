@@ -5,6 +5,8 @@ import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { type PropsWithChildren } from "react";
+import { Header } from "@/components/header";
+import { AuthSessionProvider } from "@/providers/next-auth";
 
 export const metadata: Metadata = {
   title: "French Made Natural",
@@ -16,7 +18,10 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <AuthSessionProvider>
+          <Header />
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );
