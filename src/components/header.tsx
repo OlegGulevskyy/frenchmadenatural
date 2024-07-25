@@ -77,37 +77,52 @@ export const Header = () => {
         {status === "loading" && <Skeleton className="h-9 w-9 rounded-full" />}
 
         {status === "authenticated" && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                {data.user.image ? (
-                  <Avatar>
-                    <AvatarImage src={data.user.image} />
-                    <AvatarFallback className="flex w-full items-center justify-center">
-                      <CircleUser className="h-5 w-5" />
-                    </AvatarFallback>
-                  </Avatar>
-                ) : (
-                  <CircleUser className="h-5 w-5" />
-                )}
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>
-                <p>{data.user.name} 👋</p>
-                <p className="font-normal mt-1 text-slate-600">6 lessons available</p>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>My Lessons</DropdownMenuItem>
-              <DropdownMenuItem>Reserve</DropdownMenuItem>
-              <DropdownMenuItem>Purchase</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => signOut()}>
-                Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <>
+            <span className="hidden font-semibold md:flex">
+              6 lessons available
+            </span>
+            <Button variant="secondary" className="hidden md:flex">
+              Buy more
+            </Button>
+            <Button variant="secondary" className="flex md:hidden">Buy more lessons</Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="rounded-full"
+                >
+                  {data.user.image ? (
+                    <Avatar>
+                      <AvatarImage src={data.user.image} />
+                      <AvatarFallback className="flex w-full items-center justify-center">
+                        <CircleUser className="h-5 w-5" />
+                      </AvatarFallback>
+                    </Avatar>
+                  ) : (
+                    <CircleUser className="h-5 w-5" />
+                  )}
+                  <span className="sr-only">Toggle user menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>
+                  <p className="mt-1 font-normal text-slate-600">
+                    6 lessons available
+                  </p>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>My Lessons</DropdownMenuItem>
+                <DropdownMenuItem>Reserve</DropdownMenuItem>
+                <DropdownMenuItem>Purchase</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => signOut()}>
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
         )}
 
         {status === "unauthenticated" && (
