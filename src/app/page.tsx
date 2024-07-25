@@ -1,12 +1,12 @@
 import { HowItWorks } from "@/components/how-it-works";
 import { Hero } from "@/components/hero";
 import { Testimonials } from "@/components/testimonials";
-import { getServerAuthSession } from "@/server/auth";
+// import { getServerAuthSession } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 
 export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
-  const session = await getServerAuthSession();
+  // const hello = await api.post.hello({ text: "from tRPC" });
+  // const session = await getServerAuthSession();
 
   void api.post.getLatest.prefetch();
 

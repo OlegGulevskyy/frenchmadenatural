@@ -94,7 +94,10 @@ export const Header = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>
+                <p>{data.user.name} 👋</p>
+                <p className="font-normal mt-1 text-slate-600">6 lessons available</p>
+              </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>My Lessons</DropdownMenuItem>
               <DropdownMenuItem>Reserve</DropdownMenuItem>
