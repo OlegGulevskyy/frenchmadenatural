@@ -3,9 +3,9 @@ import { Container } from "@/components/container";
 
 export const HowItWorks = () => {
   return (
-    <Container className="relative overflow-hidden">
+    <Container className="relative overflow-hidden mx-0 w-full max-w-full px-4 sm:px-6 lg:px-8 ">
       <Image
-        className="z-1 absolute left-0 top-0 h-[1024px] w-full object-cover sm:w-[1024]"
+        className="z-1 absolute left-0 top-0 h-[1024px] w-[2245px] object-cover"
         src={"/background-features.jpg"}
         alt=""
         width={2245}
@@ -16,7 +16,7 @@ export const HowItWorks = () => {
         <h2 className="font-display z-10 text-3xl tracking-tight text-white sm:text-4xl">
           How does it work?
         </h2>
-        <ul className="mt-4 list-outside list-none text-left text-lg tracking-tight text-white">
+        <ul className="mt-10 list-outside list-none text-left text-lg tracking-tight text-white">
           <li className="mb-2 text-xl">🗣 Small talk</li>
           <li className="mb-2 text-xl">
             🆕 Review new vocabulary and expressions
