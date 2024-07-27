@@ -21,9 +21,18 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 export const Header = () => {
   const { status, data } = useSession();
 
+  const isNewUser = data?.user.credits === 0;
+  const isNewCustomer =
+    data?.user.stripeCustomerId === null && !data.user.hasConsumedFreeLesson;
+
   const lessonsLabel =
-    data?.user.credits === 0 && !data.user.hasConsumedFreeLesson
+    isNewUser && isNewCustomer
       ? "You have one free lesson 🤩"
+      : `${data?.user.credits} lessons available`;
+
+  const menuLessonLabel =
+    isNewUser && isNewCustomer
+      ? "1 free lesson"
       : `${data?.user.credits} lessons available`;
 
   return (
@@ -83,9 +92,7 @@ export const Header = () => {
 
         {status === "authenticated" && (
           <>
-            <span className="hidden font-semibold md:flex">
-              {lessonsLabel}
-            </span>
+            <span className="hidden font-semibold md:flex">{lessonsLabel}</span>
             <Link href="/purchase">
               <Button variant="secondary" className="hidden md:flex">
                 Buy more
@@ -118,7 +125,7 @@ export const Header = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>
                   <p className="mt-1 font-normal text-slate-600">
-                    6 lessons available
+                    {menuLessonLabel}
                   </p>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
