@@ -14,16 +14,18 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
+model Lesson {
     id        Int      @id @default(autoincrement())
-    name      String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     createdBy   User   @relation(fields: [createdById], references: [id])
     createdById String
 
-    @@index([name])
+    startAt DateTime
+    endAt   DateTime
+
+    @@index([startAt])
 }
 
 // Necessary for Next auth
@@ -55,14 +57,17 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
+    id                    String    @id @default(cuid())
+    name                  String?
+    email                 String?   @unique
+    emailVerified         DateTime?
+    image                 String?
+    accounts              Account[]
+    sessions              Session[]
+    lessons               Lesson[]
+    credits               Int       @default(0)
+    hasConsumedFreeLesson Boolean   @default(false)
+    stripeCustomerId      String?
 }
 
 model VerificationToken {
