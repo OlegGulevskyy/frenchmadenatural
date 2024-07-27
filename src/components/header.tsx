@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
-import { CircleUser, Menu } from "lucide-react";
+import { CircleUser, DoorOpen, LogIn, Menu } from "lucide-react";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -52,13 +52,9 @@ export const Header = () => {
           href="/reserve"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          <Button variant="default">Reserve a lesson</Button>
-        </Link>
-        <Link
-          href="/about"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          About me
+          <Button variant="default" className="p-6 text-lg">
+            Reserve a lesson
+          </Button>
         </Link>
       </nav>
 
@@ -150,7 +146,10 @@ export const Header = () => {
 
         {status === "unauthenticated" && (
           <Link href="/api/auth/signin">
-            <Button variant="default">Sign in</Button>
+            <Button variant="secondary" className="p-6 text-lg">
+              <LogIn className="mr-4 h-5 w-5" />
+              Sign in
+            </Button>
           </Link>
         )}
       </div>
