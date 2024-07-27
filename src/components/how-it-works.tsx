@@ -1,17 +1,8 @@
-import Image from "next/image";
 import { Container } from "@/components/container";
 
 export const HowItWorks = () => {
   return (
-    <Container className="relative overflow-hidden mx-0 w-full max-w-full px-4 sm:px-6 lg:px-8 ">
-      <Image
-        className="z-1 absolute left-0 top-0 h-[1024px] w-[2245px] object-cover"
-        src={"/background-features.jpg"}
-        alt=""
-        width={2245}
-        height={1636}
-        unoptimized
-      />
+    <Container className="relative overflow-hidden mx-0 w-full max-w-full px-4 sm:px-6 lg:px-8 bg-slate-900">
       <section className="relative z-10 mx-auto mb-20 mt-20 max-w-2xl md:text-center">
         <h2 className="font-display z-10 text-3xl tracking-tight text-white sm:text-4xl">
           How does it work?
