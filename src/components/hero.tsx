@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export const Hero = () => {
   return (
     <Container>
-      <main className="mt-20 mb-20">
+      <main className="mb-20 mt-20 md:mt-0">
+
+        <div className="flex md:flex-row flex-col items-center justify-center">
         <h1 className="font-display mx-auto max-w-4xl text-center text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
           French{" "}
           <span className="relative whitespace-nowrap text-blue-600">
@@ -21,20 +24,29 @@ export const Hero = () => {
           </span>{" "}
           for everyone.
         </h1>
-        <p className="mx-auto mt-10 max-w-2xl text-lg tracking-tight text-slate-700">
+        <Image 
+          src="/xavier_no_bg.png"
+          alt="Xavier"
+          width={400}
+          height={400}
+          className="mx-auto w-60 md:w-1/3 mt-10 max-w-2xl rounded-full"
+        />
+        </div>
+        <p className="mx-auto mt-20 max-w-2xl text-2xl tracking-tight text-slate-700">
           I help adults at a high beginner / low intermediate level understand
           French native speakers with my natural methods.
         </p>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+
+        <p className="mx-auto mt-6 max-w-2xl text-2xl tracking-tight text-slate-700">
           Using my <b>natural method</b>, I help adults understand French native
           speakers. My lessons are designed to fit your busy life, focusing on
           real-life conversations and practical listening exercises. 🇫🇷✨
         </p>
-        <div className="mt-10 flex md:justify-center justify-start gap-x-6">
+        <div className="mt-20 flex md:justify-center justify-start gap-x-6">
           <Link href="/reserve">
             <Button className="p-6 text-lg">
-              Get your first lesson for free!
+              Get your first lesson for free now!
             </Button>
           </Link>
         </div>
