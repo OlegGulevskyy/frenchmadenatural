@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 import { CircleUser, Menu } from "lucide-react";
 import { AvatarFallback } from "@radix-ui/react-avatar";
@@ -36,10 +37,16 @@ export const Header = () => {
       : `${data?.user.credits} lessons available`;
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center justify-between gap-4 border-b bg-background px-4 md:px-6">
+    <header className="sticky top-0 z-20 flex h-24 items-center justify-between gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link href="/">
-          <span className="text-4xl">🇫🇷</span>
+          <Image
+            src="/logo.png"
+            alt="French Made Natural"
+            width={500}
+            height={500}
+            className="h-24 w-auto"
+          />
         </Link>
         <Link
           href="/reserve"
