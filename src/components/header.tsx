@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
-import { CircleUser, DoorOpen, LogIn, Menu } from "lucide-react";
+import { CircleUser, LogIn, Menu } from "lucide-react";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
