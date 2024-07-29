@@ -18,23 +18,27 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { SIGN_IN_PAGE } from "@/lib/navigation";
+import { api } from "@/trpc/react";
 
 export const Header = () => {
-  const { status, data } = useSession();
+  const { status, data: sessionData } = useSession();
+  const { data: userData, isLoading: isUserDataLoading } =
+    api.user.getProfile.useQuery();
 
-  const isNewUser = data?.user.credits === 0;
+  const isNewUser = userData?.credits === 0;
   const isNewCustomer =
-    data?.user.stripeCustomerId === null && !data.user.hasConsumedFreeLesson;
+    userData?.stripeCustomerId === null && !userData?.hasConsumedFreeLesson;
 
   const lessonsLabel =
     isNewUser && isNewCustomer
       ? "You have one free lesson 🤩"
-      : `${data?.user.credits} lessons available`;
+      : `${userData?.credits} lessons available`;
 
   const menuLessonLabel =
     isNewUser && isNewCustomer
       ? "1 free lesson"
-      : `${data?.user.credits} lessons available`;
+      : `${userData?.credits} lessons available`;
 
   return (
     <header className="sticky top-0 z-20 flex h-24 items-center justify-between gap-4 border-b bg-background px-4 md:px-6">
@@ -95,15 +99,21 @@ export const Header = () => {
 
         {status === "authenticated" && (
           <>
-            <span className="hidden font-semibold md:flex">{lessonsLabel}</span>
-            <Link href="/purchase">
-              <Button variant="secondary" className="hidden md:flex">
-                Buy more
-              </Button>
-            </Link>
-            <Button variant="secondary" className="flex md:hidden">
-              Buy more lessons
-            </Button>
+            {!isUserDataLoading && (
+              <>
+                <span className="hidden font-semibold md:flex">
+                  {lessonsLabel}
+                </span>
+                <Link href="/purchase">
+                  <Button variant="secondary" className="hidden md:flex">
+                    Buy more
+                  </Button>
+                </Link>
+                <Button variant="secondary" className="flex md:hidden">
+                  Buy more lessons
+                </Button>
+              </>
+            )}
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -112,9 +122,9 @@ export const Header = () => {
                   size="icon"
                   className="rounded-full"
                 >
-                  {data.user.image ? (
+                  {sessionData.user.image ? (
                     <Avatar>
-                      <AvatarImage src={data.user.image} />
+                      <AvatarImage src={sessionData.user.image} />
                       <AvatarFallback className="flex w-full items-center justify-center">
                         <CircleUser className="h-5 w-5" />
                       </AvatarFallback>
@@ -145,7 +155,7 @@ export const Header = () => {
         )}
 
         {status === "unauthenticated" && (
-          <Link href="/api/auth/signin">
+          <Link href={SIGN_IN_PAGE}>
             <Button variant="secondary" className="p-6 text-lg">
               <LogIn className="mr-4 h-5 w-5" />
               Sign in

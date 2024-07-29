@@ -1,8 +1,10 @@
-export default function Reserve() {
+import { ProtectedRoute } from "@/components/protected-route";
+import { Reservation } from "@/components/reservation";
+
+export default async function Reserve() {
   return (
-    <div>
-      <h1>Reserve</h1>
-      Work in progress
-    </div>
+    <ProtectedRoute withAuth canPurchase>
+      <Reservation />
+    </ProtectedRoute>
   );
 }

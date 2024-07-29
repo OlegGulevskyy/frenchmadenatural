@@ -1,8 +1,12 @@
+import { ProtectedRoute } from "@/components/protected-route";
+
 export default function Purchase() {
   return (
-    <div>
-      <h1>Purchase</h1>
-      Work in progress
-    </div>
+    <ProtectedRoute withAuth>
+      <div>
+        <h1>Purchase</h1>
+        Work in progress
+      </div>
+    </ProtectedRoute>
   );
 }
